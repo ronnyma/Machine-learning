@@ -18,11 +18,11 @@ for iter = 1:num_iters
     %
 
 
+    for i = 1:2
+      %tmp(i) = theta(i) - alpha * (1/m) * sum((X * theta - y) .* X(:,i));
+    end
 
-
-
-
-
+    %theta = tmp;
 
 
 
