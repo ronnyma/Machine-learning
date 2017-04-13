@@ -84,7 +84,9 @@ a3 = sigmoid(z3);
 h = a3;
 
 %Create the cost function
-J = sum(sum((-y) .* log(h) - (1 - y) .* log(1 - h)))/m;
+J = sum(sum((-y) .* log(h) - (1 - y) .* log(1 - h)))/m + ...
+    ((lambda/(2 * m)) * ...
+    ((sum(sum(Theta1(:,2:end).^2))) + (sum(sum(Theta2(:,2:end).^2)))));
 
 
 % -------------------------------------------------------------
