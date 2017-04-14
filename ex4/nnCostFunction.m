@@ -62,8 +62,7 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-% Map y_i to a vector
-
+% Part 1
 I = eye(num_labels);
 t = zeros(m, num_labels);
 for i=1:m
@@ -88,6 +87,22 @@ J = sum(sum((-y) .* log(h) - (1 - y) .* log(1 - h)))/m + ...
     ((lambda/(2 * m)) * ...
     ((sum(sum(Theta1(:,2:end).^2))) + (sum(sum(Theta2(:,2:end).^2)))));
 
+
+% Back propagation
+delta_3 = a3 - y;
+
+delta_2 = (delta_3 * Theta2) .* sigmoidGradient([ones(size(z2, 1), 1) z2]);
+
+delta_2 = delta_2(:, 2:end);
+
+% Accumulate gradients
+D_1 = (delta_2'*a1);
+D_2 = (delta_3'*a2);
+
+
+% Regularize the gradients
+Theta1_grad = D_1./m + (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];;
+Theta2_grad = D_2./m + (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
 
 % -------------------------------------------------------------
 
