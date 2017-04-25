@@ -23,11 +23,23 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+val = [0.01 0.03 0.1 0.3 1 3 10 30];
+v = size(val, 2);
+pred_matrix = zeros(8);
 
+for i = 1:v
+    for j = 1:v
+        model= svmTrain(X, y, val(i), @(x1, x2) gaussianKernel(x1, x2, val(j))); 
+        predictions = svmPredict(model, Xval);
+        pred_matrix(i, j) = mean(double(predictions ~= yval));
+    end
+end
 
+[~, ind] = min(pred_matrix(:));
+[m,n] = ind2sub(size(pred_matrix),ind)
 
-
-
+C = val(m);
+sigma = val(n);
 
 % =========================================================================
 
