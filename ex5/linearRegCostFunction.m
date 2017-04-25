@@ -21,12 +21,16 @@ grad = zeros(size(theta));
 
 
 
+delta = X*theta -y;
+
+tmp_theta = [0; theta(2:end, :)];
+
+reg = lambda * (tmp_theta' * tmp_theta);
+
+J = (delta' * delta) / (2 * m) + reg / (2 * m);
 
 
-
-
-
-
+grad = (X' * delta + lambda * tmp_theta) / m;
 
 
 
