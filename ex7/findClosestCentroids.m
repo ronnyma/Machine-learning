@@ -23,7 +23,7 @@ idx = zeros(size(X,1), 1);
 % Find the number of examples
 m = size(X, 1);
 
-d = zeros(3,1);
+d = zeros(K,1);
 
 
 for i = 1:m
