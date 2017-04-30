@@ -20,11 +20,20 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
+% Find the number of examples
+m = size(X, 1);
+
+d = zeros(3,1);
 
 
-
-
-
+for i = 1:m
+    for j = 1:K
+        diff = X(i, :)' - centroids(j, :)';
+        d(j) = diff' * diff; 
+    end
+    [~,l] = min(d);
+    idx(i) = l;
+end
 
 
 % =============================================================
