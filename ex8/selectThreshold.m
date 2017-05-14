@@ -25,6 +25,7 @@ for epsilon = min(pval):stepsize:max(pval)
     
     predictions = (pval < epsilon);
     
+    %F1-params
     tp = sum(predictions == yval & (yval == 1));
     fp = sum((predictions == 1) & (yval == 0));
     fn = sum((predictions == 0) & (yval == 1));
