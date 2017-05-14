@@ -35,15 +35,6 @@ for epsilon = min(pval):stepsize:max(pval)
     
     F1 = (2 * prec * rec) / (prec + rec);
 
-
-
-
-
-
-
-
-
-
     % =============================================================
 
     if F1 > bestF1
